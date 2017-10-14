@@ -12,6 +12,7 @@ class PlayState extends FlxState
 	var currentBackground:Background;
 	var currentMap:MapLoader;
 	var currentPlayer:Player;
+	var enemy:EnemyOne;
  
 	override public function create():Void
 	{
@@ -27,6 +28,8 @@ class PlayState extends FlxState
 		}
 		
 		currentPlayer = new Player();
+		enemy = new EnemyOne();
+		add(enemy);
 		add(currentPlayer);
 	}
 
@@ -35,6 +38,8 @@ class PlayState extends FlxState
 		FlxG.camera.follow(currentPlayer, PLATFORMER, 1);
 		FlxG.collide(currentPlayer, currentMap.load()[1]);
 		FlxG.collide(currentPlayer, currentMap.load()[0]);
+		FlxG.collide(enemy, currentMap.load()[1]);
+		FlxG.collide(enemy, currentMap.load()[0]);
 		super.update(elapsed);
 	}
 }

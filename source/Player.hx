@@ -47,6 +47,7 @@ class Player extends FlxSprite
 	{
 		movement(elapsed);
 		super.update(elapsed);
+	
 	}
 	
 	public function movement(elapsed):Void
@@ -137,6 +138,7 @@ class Player extends FlxSprite
 		
 		if (jump > 0)
 		{
+			trace(elapsed);
 			if (jump < 0.065)
 				this.velocity.y = jumpHeight *2;//que tan rapido sube
 			else
