@@ -13,6 +13,8 @@ class PlayState extends FlxState
 	var currentMap:MapLoader;
 	var currentPlayer:Player;
 	var enemy:EnemyOne;
+
+	var enemies:Array<EnemyOne>;
  
 	override public function create():Void
 	{
@@ -27,9 +29,16 @@ class PlayState extends FlxState
 			add(maps);
 		}
 		
+		enemies = [new EnemyOne(100,650),
+				   new EnemyOne(1000,650),
+				   new EnemyOne(2000, 650)];
+		
+
 		currentPlayer = new Player();
-		enemy = new EnemyOne();
-		add(enemy);
+		//trace(enemies);
+		for (enemy in enemies) {
+			add(enemy);
+		}
 		add(currentPlayer);
 	}
 
@@ -38,8 +47,12 @@ class PlayState extends FlxState
 		FlxG.camera.follow(currentPlayer, PLATFORMER, 1);
 		FlxG.collide(currentPlayer, currentMap.load()[1]);
 		FlxG.collide(currentPlayer, currentMap.load()[0]);
-		FlxG.collide(enemy, currentMap.load()[1]);
-		FlxG.collide(enemy, currentMap.load()[0]);
+
+		for (enemy in enemies){
+			FlxG.collide(enemy, currentMap.load()[1]);
+			FlxG.collide(enemy, currentMap.load()[0]);
+		}
+
 		super.update(elapsed);
 	}
 }
