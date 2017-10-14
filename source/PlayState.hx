@@ -16,7 +16,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		
+		//hola george me dejas contribuir?
 		currentBackground = new Background("blueGrass");
 		this.add(currentBackground);
 		
